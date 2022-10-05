@@ -18,7 +18,7 @@
                     メールが届いていない場合は
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">こちらをクリックしてください。再送信いたします。</button>.
+                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">こちらをクリックしてください。再送信いたします。</button>
                     </form>
                 </div>
             </div>
