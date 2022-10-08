@@ -29,6 +29,11 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
-Route::get('/profile', function () {
-    // 確認済みのユーザーのみがこのルートにアクセス可能
-})->middleware('verified');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// 確認済みのユーザーのみがこのルートにアクセス可能
+Route::group(['middleware' => 'verified'], function () {
+    Route::get('/profile', function () {
+        
+    });
+});
