@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todo;
+use App\Http\Requests\TodoRequest;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -24,7 +25,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-        //
+        return view('Todo.create');
     }
 
     /**
@@ -33,9 +34,15 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     {
-        //
+        $todo = new Todo();
+        $todo->create($request->all());
+    
+        return redirect('home')->with(
+            'status',
+            $request->title . 'タスクを登録しました!'
+        );
     }
 
     /**

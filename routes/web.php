@@ -33,7 +33,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // 確認済みのユーザーのみがこのルートにアクセス可能
 Route::group(['middleware' => 'verified'], function () {
-    Route::get('/profile', function () {
-        
-    });
+    Route::get('/todo/create', [App\Http\Controllers\TodoController::class, 'create'])->name('todo.create');
+    Route::post('/todo/store', [App\Http\Controllers\TodoController::class, 'store'])->name('todo.store');
 });
