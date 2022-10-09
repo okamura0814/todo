@@ -29,10 +29,11 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\TodoController::class, 'index'])->name('home');
 
 // 確認済みのユーザーのみがこのルートにアクセス可能
 Route::group(['middleware' => 'verified'], function () {
     Route::get('/todo/create', [App\Http\Controllers\TodoController::class, 'create'])->name('todo.create');
     Route::post('/todo/store', [App\Http\Controllers\TodoController::class, 'store'])->name('todo.store');
+    Route::get('/todo/{book}/edit', [App\Http\Controllers\TodoController::class, 'edit'])->name('todo.edit');
 });

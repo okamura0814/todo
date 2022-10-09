@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Todo;
 use App\Http\Requests\TodoRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        $todos = Todo::with(['user'])->where('user_id', 1)->get();
+        return view('Todo.index', compact('todos'));
     }
 
     /**
@@ -46,25 +51,15 @@ class TodoController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Todo  $todo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Todo $todo)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Todo $todo)
+    public function edit($id)
     {
-        //
+        $todo = Todo::with(['user'])->find($id);
+        return view('todo.edit', compact('todo'));
     }
 
     /**

@@ -54,6 +54,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function todos()
     {
-        return $this->hasMany('App\Models\Todo');
+        return $this->hasMany(Todo::class);
     }
 }
