@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">タスク登録</div>
+                <div class="card-header">タスク編集</div>
 
                 <form method="POST" id="destroy_form" action="{{ route('todo.destroy',$todo->id) }}">
                     @csrf
