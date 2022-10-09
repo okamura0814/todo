@@ -14,7 +14,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('auth.login');
 });
 
@@ -26,13 +26,12 @@ Route::get('/verify', function () {
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-    return redirect('/home');
+    return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify');
-
-Route::get('/home', [App\Http\Controllers\TodoController::class, 'index'])->name('home');
 
 // 確認済みのユーザーのみがこのルートにアクセス可能
 Route::group(['middleware' => 'verified'], function () {
+    Route::get('/', [App\Http\Controllers\TodoController::class, 'index'])->name('home');
     Route::get('/todo/create', [App\Http\Controllers\TodoController::class, 'create'])->name('todo.create');
     Route::post('/todo/store', [App\Http\Controllers\TodoController::class, 'store'])->name('todo.store');
     Route::get('/todo/{book}/edit', [App\Http\Controllers\TodoController::class, 'edit'])->name('todo.edit');
