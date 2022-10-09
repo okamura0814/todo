@@ -31,7 +31,7 @@
                                 <label class="form-check-label" for="inlineFormCheck">完了済を表示</label>
                             </div>
                             <div class="col-auto" style="margin-left:auto;">
-                                <a href="{{ route('todo.create') }}" class="btn btn-primary m-2">新規登録</a>
+                                <a href="{{ route('todo.create') }}" class="btn btn-primary m-2">＋タスク追加</a>
                             </div>
                         </div>
                     </form>
