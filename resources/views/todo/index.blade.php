@@ -12,10 +12,10 @@
                         </div>
                     @endif
                     <!-- 検索フォーム -->
-                    <form method="get" action="/users">
+                    <form method="get" action="{{ route('home') }}">
                         <div class="row m-3">
                             <div class="col-auto col-md-6">
-                                <input class="form-control" id="keyword" type="text" name="keyword" value="">
+                                <input class="form-control" id="keyword" type="text" name="keyword" value="{{ request()->keyword }}">
                             </div>
                             <div class="col-auto">
                                 <input type="submit" value="検索" class="btn btn-primary">
@@ -23,12 +23,12 @@
                         </div>
                         <div class="row m-3">
                             <div class="col-auto form-check m-1">
-                                <input class="form-check-input" type="checkbox" id="inlineFormCheck">
-                                <label class="form-check-label" for="inlineFormCheck">期限超過のみ</label>
+                                <input class="form-check-input" type="checkbox" id="expired" name="expired" value="1" {{ !empty(request()->expired)?'checked':''; }}>
+                                <label class="form-check-label" for="expired">期限超過のみ</label>
                             </div>
                             <div class="col-auto form-check m-1">
-                                <input class="form-check-input" type="checkbox" id="inlineFormCheck">
-                                <label class="form-check-label" for="inlineFormCheck">完了済を表示</label>
+                                <input class="form-check-input" type="checkbox" id="status" name="status" value="1" {{ !empty(request()->status)?'checked':''; }}>
+                                <label class="form-check-label" for="status">完了済を表示</label>
                             </div>
                             <div class="col-auto" style="margin-left:auto;">
                                 <a href="{{ route('todo.create') }}" class="btn btn-primary m-2">＋タスク追加</a>
@@ -51,7 +51,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $todos->links() }}
+                    {{ $todos->appends(request()->query())->links() }}
                 </div>
             </div>
         </div>

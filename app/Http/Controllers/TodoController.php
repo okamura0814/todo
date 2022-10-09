@@ -17,12 +17,27 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $todos = Todo::with(['user'])->where([
+        $conditions = [
             ['user_id',  Auth::id()],
-            ['status', '0'],
-        ])->paginate(5);
+        ];
+
+        if(!empty($request->keyword)){
+            $conditions[] = ['title','like','%'.$request->keyword.'%'];
+        }
+
+        if(!empty($request->status)){
+            $conditions[] = ['status', '1'];
+        }else{
+            $conditions[] = ['status', '0'];
+        }
+
+        if(!empty($request->expired)){
+            $conditions[] = ['due_date', '<=', date('Y-m-d')];
+        }
+
+        $todos = Todo::with(['user'])->where($conditions)->paginate(5);
         return view('Todo.index', compact('todos'));
     }
 
@@ -47,7 +62,7 @@ class TodoController extends Controller
         $todo = new Todo();
         $todo->create($request->all());
     
-        return redirect('home')->with(
+        return redirect('/')->with(
             'status',
             $request->title . 'タスクを登録しました!'
         );
@@ -77,7 +92,7 @@ class TodoController extends Controller
         $todo = Todo::find($id);
         $todo->update($request->all());
     
-        return redirect('home')->with(
+        return redirect('/')->with(
             'status',
             $todo->title . 'タスクを編集しました!'
         );
@@ -94,7 +109,7 @@ class TodoController extends Controller
         $todo = Todo::find($id);
         $todo->delete();
     
-        return redirect('home')->with(
+        return redirect('/')->with(
             'status',
             $todo->title . 'タスクを編集しました!'
         );
