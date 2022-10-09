@@ -80,7 +80,7 @@
 
                     <div class="row mb-0">
                         <div class="col-md-6 offset-md-8">
-                            <button type="submit" form="destroy_form" class="btn btn-danger me-md-2">
+                            <button type="submit" form="destroy_form" class="btn btn-danger me-md-2" onclick='return confirm("削除しますか？");'>
                                 削除
                             </button>
                             <button type="submit" form="update_form" class="btn btn-primary">
