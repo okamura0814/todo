@@ -111,7 +111,7 @@ class TodoController extends Controller
     
         return redirect('/')->with(
             'status',
-            $todo->title . 'タスクを編集しました!'
+            $todo->title . 'タスクを削除しました!'
         );
     }
 }
