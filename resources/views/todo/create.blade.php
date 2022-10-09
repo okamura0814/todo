@@ -11,9 +11,9 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="title" class="col-md-4 col-form-label text-md-end">タイトル</label>
+                            <label for="title" class="col-md-3 col-form-label text-md-end">タイトル</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
 
                                 @error('title')
@@ -25,10 +25,10 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="content" class="col-md-4 col-form-label text-md-end">内容</label>
+                            <label for="content" class="col-md-3 col-form-label text-md-end">内容</label>
 
-                            <div class="col-md-6">
-                                <input id="content" type="text" class="form-control @error('content') is-invalid @enderror" name="content" value="{{ old('content') }}" autocomplete="content" autofocus>
+                            <div class="col-md-8">
+                            <textarea id="content" type="text" class="form-control @error('content') is-invalid @enderror" name="content" autocomplete="content" autofocus style="height: 200px">{{ old('content') }}</textarea>
 
                                 @error('content')
                                     <span class="invalid-feedback" role="alert">
@@ -39,9 +39,9 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="datepicker" class="col-md-4 col-form-label text-md-end">期限</label>
+                            <label for="datepicker" class="col-md-3 col-form-label text-md-end">期限</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input id="datepicker" type="text" class="form-control @error('due_date') is-invalid @enderror" name="due_date" value="{{ old('due_date') }}" autocomplete="due_date">
 
                                 @error('due_date')
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-6 offset-md-9">
                                 <button type="submit" class="btn btn-primary">
                                     追加
                                 </button>
