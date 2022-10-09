@@ -58,7 +58,7 @@ class TodoController extends Controller
      */
     public function edit($id)
     {
-        $todo = Todo::with(['user'])->find($id);
+        $todo = Todo::find($id);
         return view('todo.edit', compact('todo'));
     }
 
@@ -69,9 +69,15 @@ class TodoController extends Controller
      * @param  \App\Models\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Todo $todo)
+    public function update(TodoRequest $request, $id)
     {
-        //
+        $todo = Todo::find($id);
+        $todo->update($request->all());
+    
+        return redirect('home')->with(
+            'status',
+            $todo->title . 'タスクを編集しました!'
+        );
     }
 
     /**
@@ -80,8 +86,14 @@ class TodoController extends Controller
      * @param  \App\Models\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Todo $todo)
+    public function destroy($id)
     {
-        //
+        $todo = Todo::find($id);
+        $todo->delete();
+    
+        return redirect('home')->with(
+            'status',
+            $todo->title . 'タスクを編集しました!'
+        );
     }
 }
