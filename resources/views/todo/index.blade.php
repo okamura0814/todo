@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">タスク</div>
+                <div class="card-header">タスク一覧</div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -21,7 +21,6 @@
                                 <input type="submit" value="検索" class="btn btn-primary">
                             </div>
                         </div>
-                        <!-- 新規登録ボタン -->
                         <div class="row m-3">
                             <div class="col-auto form-check m-1">
                                 <input class="form-check-input" type="checkbox" id="inlineFormCheck">
@@ -32,7 +31,7 @@
                                 <label class="form-check-label" for="inlineFormCheck">完了済を表示</label>
                             </div>
                             <div class="col-auto" style="margin-left:auto;">
-                                <a href="/users/create" class="btn btn-primary m-2">新規登録</a>
+                                <a href="{{ route('todo.create') }}" class="btn btn-primary m-2">新規登録</a>
                             </div>
                         </div>
                     </form>
