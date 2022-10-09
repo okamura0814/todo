@@ -22,6 +22,10 @@ class Todo extends Model
         'user_id',
     ];
 
+    protected $dates = [
+        'due_date',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

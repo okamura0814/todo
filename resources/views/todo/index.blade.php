@@ -47,7 +47,7 @@
                                 <tr class="todo_tr" data-href="{{ route('todo.edit',$todo->id) }}">
                                     <td>{{$todo->user->nickname}}</td>
                                     <td>{{$todo->title}}</td>
-                                    <td>{{empty($todo->due_date) ? '-':$todo->due_date}}</td>
+                                    <td>{{empty($todo->due_date) ? '-':$todo->due_date->format('Y/m/d')}}</td>
                                 </tr>
                             @endforeach
                         </tbody>
