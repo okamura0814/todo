@@ -67,7 +67,7 @@
                             <label for="datepicker" class="col-md-3 col-form-label text-md-end">期限</label>
 
                             <div class="col-md-8">
-                                <input id="datepicker" type="text" class="form-control @error('due_date') is-invalid @enderror" name="due_date" value="{{ old('due_date',$todo->due_date->format('Y/m/d')) }}" autocomplete="due_date">
+                                <input id="datepicker" type="text" class="form-control @error('due_date') is-invalid @enderror" name="due_date" value="{{ old('due_date',!empty($todo->due_date)?$todo->due_date->format('Y/m/d'):'') }}" autocomplete="due_date">
 
                                 @error('due_date')
                                     <span class="invalid-feedback" role="alert">
