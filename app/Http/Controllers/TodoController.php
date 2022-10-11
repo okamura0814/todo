@@ -38,7 +38,7 @@ class TodoController extends Controller
         }
 
         $todos = Todo::with(['user'])->where($conditions)->paginate(5);
-        return view('Todo.index', compact('todos'));
+        return view('todo.index', compact('todos'));
     }
 
     /**
@@ -48,7 +48,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-        return view('Todo.create');
+        return view('todo.create');
     }
 
     /**
