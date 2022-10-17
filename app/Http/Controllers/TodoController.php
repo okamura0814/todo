@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class TodoController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth');
+        $this->middleware('verified');
     }
     /**
      * Display a listing of the resource.

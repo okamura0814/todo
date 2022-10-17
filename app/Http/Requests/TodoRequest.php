@@ -25,6 +25,7 @@ class TodoRequest extends FormRequest
     {
         return [
             'title' => ['required','max:64'],
+            'due_date' => ['date_format:Y/m/d'],
         ];
     }
 
@@ -32,6 +33,14 @@ class TodoRequest extends FormRequest
     {
         return [
             'title' => 'タイトル',
+            'due_date' => '期限',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'due_date.date_format' => '期限は「年/月/日」形式で指定してください',
         ];
     }
 }
